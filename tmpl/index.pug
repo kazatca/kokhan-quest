@@ -7,11 +7,11 @@ html(lang="ru")
     .content
       case level
         when 0 
-          p Уровень 0.
+          include story1.pug
         when 1 
-          p Уровень 1.
+          include story2.pug
         when 2
-          p Уровень 2.
+          include story3.pug
       if !win
         form(method="post")
           input(name="answer" value=answer)

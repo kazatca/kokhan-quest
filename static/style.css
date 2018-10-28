@@ -14,3 +14,6 @@ input {
 .error {
   text-align: center;
 }
+.blur {
+  filter: blur(4px);
+}

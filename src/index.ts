@@ -39,9 +39,9 @@ interface Response {
 }
 
 const answers: string[] = [
-  'a',
-  'b',
-  'c'
+  'схватила распятие и бросила его в камин',
+  'все идем бухать к аквамэну',
+  'отсоси у аквалангиста'
 ];
 
 function getLevel(level: number, answer: string): Response{
