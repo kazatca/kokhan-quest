@@ -72,7 +72,7 @@ app.use(async ctx => {
   session.level = level;
 
   ctx.type='text/html; charset=utf-8';
-  ctx.body = pug.renderFile('./src/page.pug', {level, win, answer: body.answer, error});  
+  ctx.body = pug.renderFile('./tmpl/index.pug', {level, win, answer: body.answer, error});  
 })
 
 app.listen(PORT);
