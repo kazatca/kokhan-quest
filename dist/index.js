@@ -25,9 +25,9 @@ app.use(session({
 app.use(koaBody());
 app.use(koaStatic('./static'));
 const answers = [
-    'a',
-    'b',
-    'c'
+    'схватила распятие и бросила его в камин',
+    'все идем бухать к аквамэну',
+    'отсоси у аквалангиста'
 ];
 function getLevel(level, answer) {
     if (!(answer || '').trim().length) {
