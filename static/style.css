@@ -1,0 +1,16 @@
+.content {
+  max-width: 500px;
+  margin: auto;
+}
+
+form {
+  width: 24rem;
+  margin: auto;  
+}
+input {
+  width: 24rem;
+}
+
+.error {
+  text-align: center;
+}
