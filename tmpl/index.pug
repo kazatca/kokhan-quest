@@ -2,7 +2,8 @@ html(lang="ru")
   head
     title Вспомнить все
     link(href='/style.css', rel='stylesheet')
-    meta(name="yandex-verification" content="001ca7b1d4a0af70")
+    meta(name="yandex-verification", content="001ca7b1d4a0af70")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
   body
     .content
       case level
@@ -12,8 +13,12 @@ html(lang="ru")
           include story2.pug
         when 2
           include story3.pug
-      if !win
-        form(method="post")
-          input(name="answer" value=answer)
-      if error
-        p.error= error
+        when 3
+          include story4.pug
+        when 4
+          include story5.pug
+    if !win
+      form(method="post")
+        input(name="answer" value=answer)
+    if error
+      p.error= error

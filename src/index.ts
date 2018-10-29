@@ -41,7 +41,10 @@ interface Response {
 const answers: string[] = [
   'схватила распятие и бросила его в камин',
   'все идем бухать к аквамэну',
-  'отсоси у аквалангиста'
+  'отсоси у аквалангиста',
+  'там 19 чубров в соседнем вагоне',
+  'лошадь глухого Джима',
+  'xxx'
 ];
 
 function getLevel(level: number, answer: string): Response{

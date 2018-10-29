@@ -1,14 +1,24 @@
 .content {
   max-width: 500px;
   margin: auto;
+  font-size: 18px;
+  text-align: justify;
+}
+
+.content p {
+  text-indent: 15px;
 }
 
 form {
+  padding-top: 10px;
+  padding-bottom: 40px;
   width: 24rem;
   margin: auto;  
 }
 input {
-  width: 24rem;
+  padding: 5px;
+  margin: 10px;
+  width: 90%;
 }
 
 .error {
