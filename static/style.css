@@ -1,4 +1,8 @@
+body{
+  color: #443c3c;
+}
 .content {
+  font-family: 'Marmelad', sans-serif;
   max-width: 500px;
   margin: auto;
   font-size: 18px;
