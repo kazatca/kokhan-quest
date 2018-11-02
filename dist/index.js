@@ -6,6 +6,7 @@ const session = require("koa-session");
 const koaBody = require("koa-body");
 const koaStatic = require("koa-static");
 const pug = require("pug");
+const answers_1 = require("./answers");
 const PORT = process.env.PORT || 3000;
 const app = new Koa();
 app.keys = ['some secret hurr'];
@@ -24,20 +25,12 @@ app.use(session({
 }, app));
 app.use(koaBody());
 app.use(koaStatic('./static'));
-const answers = [
-    'схватила распятие и бросила его в камин',
-    'все идем бухать к аквамэну',
-    'отсоси у аквалангиста',
-    'там 19 чубров в соседнем вагоне',
-    'лошадь глухого Джима',
-    'xxx'
-];
 function getLevel(level, answer) {
     if (!(answer || '').trim().length) {
         return { level };
     }
-    if (answers[level] === answer) {
-        if (answers.length - 1 === level) {
+    if (answers_1.default[level](answer)) {
+        if (answers_1.default.length - 1 === level) {
             return { level, win: true };
         }
         return { level: level + 1 };

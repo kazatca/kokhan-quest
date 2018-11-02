@@ -3,6 +3,7 @@ import * as session from 'koa-session';
 import * as koaBody from 'koa-body';
 import * as koaStatic from 'koa-static';
 import * as pug from 'pug';
+import answers from './answers';
 
 const PORT = process.env.PORT || 3000;
 
@@ -38,20 +39,11 @@ interface Response {
   win?: boolean;
 }
 
-const answers: string[] = [
-  'схватила распятие и бросила его в камин',
-  'все идем бухать к аквамэну',
-  'отсоси у аквалангиста',
-  'там 19 чубров в соседнем вагоне',
-  'лошадь глухого Джима',
-  'xxx'
-];
-
 function getLevel(level: number, answer: string): Response{
   if(!(answer || '').trim().length){
     return {level};
   }
-  if(answers[level] === answer){
+  if(answers[level](answer)){
     if(answers.length - 1 === level){
       return {level, win: true};
     }

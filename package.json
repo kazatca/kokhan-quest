@@ -7,18 +7,23 @@
     "start": "node dist",
     "dev": "ts-node-dev ./src/index.ts",
     "build": "tsc -p tsconfig.json --outDir dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -r ts-node/register src/*.spec.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.2.0",
     "koa": "^2.6.1",
     "koa-body": "^4.0.4",
     "koa-session": "^5.9.0",
     "koa-static": "^5.0.0",
-    "tslib": "^1.9.3",
-    "pug": "^2.0.3"
+    "mocha": "^5.2.0",
+    "pug": "^2.0.3",
+    "ts-node": "^7.0.1",
+    "tslib": "^1.9.3"
   },
   "devDependencies": {
     "@types/koa": "^2.0.46",
@@ -31,7 +36,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run build"
+      "pre-commit": "npm test & npm run build"
     }
   }
 }
