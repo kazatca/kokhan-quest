@@ -46,7 +46,7 @@ app.use((ctx) => tslib_1.__awaiter(this, void 0, void 0, function* () {
     const { level, error, win } = getLevel(session.level, body.answer);
     session.level = level;
     ctx.type = 'text/html; charset=utf-8';
-    ctx.body = pug.renderFile('./tmpl/index.pug', { level, win, answer: body.answer, error });
+    ctx.body = pug.renderFile('./tmpl/index.pug', { level, win, answer: (error ? body.answer : ''), error });
 }));
 app.listen(PORT);
 console.log(`listening on port ${PORT}`);

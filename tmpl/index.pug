@@ -21,8 +21,12 @@ html(lang="ru")
           include story5.pug
         when 5
           include story6.pug
-    if !win
-      form(method="post")
-        input(name="answer" value=answer)
-    if error
-      p.error= error
+      if !win
+        if error
+          p.error Неа
+        form(method="post")
+          input(name="answer" value=answer)
+          input(type="submit" value="Так и было")
+      
+      .hint * Возможно самостоятельно все вспомнить не удасться. Но ведь всегда можно спросить у друзей.
+      

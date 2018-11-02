@@ -1,8 +1,9 @@
 body{
   color: #443c3c;
-}
-.content {
   font-family: 'Marmelad', sans-serif;
+}
+
+.content {
   max-width: 500px;
   margin: auto;
   font-size: 18px;
@@ -16,18 +17,30 @@ body{
 form {
   padding-top: 10px;
   padding-bottom: 40px;
-  width: 24rem;
-  margin: auto;  
+  margin: auto;
 }
+
 input {
   padding: 5px;
-  margin: 10px;
-  width: 90%;
+  width: 100%;
+}
+
+input[type=submit]{
+  padding: 5px;
+  margin-top: 10px;
 }
 
 .error {
   text-align: center;
+  color: #cc5800;
+  text-indent: 0 !important;
 }
+
 .blur {
   filter: blur(4px);
+}
+
+.hint {
+  color: gray;
+  font-size: 70%;
 }
