@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist",
-    "dev": "ts-node-dev ./src/index.ts",
+    "dev": "MONGODB_URI=mongodb://localhost/kokhan_quest ts-node-dev ./src/index.ts",
     "build": "tsc -p tsconfig.json --outDir dist",
     "test": "mocha -r ts-node/register src/*.spec.ts"
   },
@@ -13,24 +13,25 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/chai": "^4.1.7",
-    "@types/mocha": "^5.2.5",
-    "chai": "^4.2.0",
     "koa": "^2.6.1",
     "koa-body": "^4.0.4",
-    "koa-session": "^5.9.0",
+    "koa-session-mongo": "^1.1.0",
+    "koa-session-store": "^2.0.0",
     "koa-static": "^5.0.0",
-    "mocha": "^5.2.0",
     "pug": "^2.0.3",
     "ts-node": "^7.0.1",
     "tslib": "^1.9.3"
   },
   "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
     "@types/koa": "^2.0.46",
     "@types/koa-session": "^5.7.4",
     "@types/koa-static": "^4.0.0",
     "@types/pug": "^2.0.4",
+    "chai": "^4.2.0",
     "husky": "^1.1.2",
+    "mocha": "^5.2.0",
     "ts-node-dev": "^1.0.0-pre.30",
     "typescript": "^3.1.3"
   },

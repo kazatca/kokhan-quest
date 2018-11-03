@@ -2,27 +2,29 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const Koa = require("koa");
-const session = require("koa-session");
+const sessionStore = require("koa-session-store");
 const koaBody = require("koa-body");
 const koaStatic = require("koa-static");
 const pug = require("pug");
+const MongoStore = require("koa-session-mongo");
 const answers_1 = require("./answers");
 const PORT = process.env.PORT || 3000;
 const app = new Koa();
 app.keys = ['some secret hurr'];
-app.use(session({
-    key: 'session',
-    /** (number || 'session') maxAge in ms (default is 1 days) */
-    /** 'session' will result in a cookie that expires when session/browser is closed */
-    /** Warning: If a session cookie is stolen, this cookie will never expire */
-    maxAge: 86400000,
-    // autoCommit: true, /** (boolean) automatically commit headers (default true) */
-    overwrite: true,
-    httpOnly: true,
-    signed: true,
-    rolling: false,
-    renew: false,
-}, app));
+// app.use(session({
+//   key: 'session',
+//   maxAge: 86400000,
+//   overwrite: true, 
+//   httpOnly: true, 
+//   signed: true,
+//   rolling: false, 
+//   renew: false,
+// }, app));
+app.use(sessionStore({
+    store: MongoStore.create({
+        url: process.env.MONGODB_URI
+    })
+}));
 app.use(koaBody());
 app.use(koaStatic('./static'));
 function getLevel(level, answer) {
