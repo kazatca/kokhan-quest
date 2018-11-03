@@ -6,7 +6,7 @@ const answers = [
     ansr => !!ansr.match(/отсоси/i) && !!ansr.match(/аквалангист/i),
     ansr => !!ansr.match(/19/) && !!ansr.match(/ч(у|ю)бр/i),
     ansr => !!ansr.match(/лошадь|кон/i) && !!ansr.match(/глух/) && !!ansr.match(/джим/i),
-    ansr => !!ansr.match(/xxx/)
+    ansr => !!ansr.match(/ника/i) && !!ansr.match(/бомб/i)
 ];
 exports.default = answers;
 //# sourceMappingURL=answers.js.map

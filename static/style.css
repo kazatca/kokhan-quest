@@ -3,6 +3,16 @@ body{
   font-family: 'Marmelad', sans-serif;
 }
 
+.venzel{
+  margin: 0 auto;
+  display: block;
+  width: 300px;
+}
+
+.venzel_flipped {
+  transform: scale(-1);
+}
+
 .content {
   max-width: 500px;
   margin: auto;

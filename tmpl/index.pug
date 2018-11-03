@@ -8,6 +8,7 @@ html(lang="ru")
     meta(name="viewport", content="width=device-width, initial-scale=1")
   body
     .content
+      img.venzel(src="/v.png")
       case level
         when 0 
           include story1.pug
@@ -21,12 +22,16 @@ html(lang="ru")
           include story5.pug
         when 5
           include story6.pug
+        when 6
+          include story7.pug
+          img.venzel.venzel_flipped(src="/v.png")
       if !win
         if error
           p.error Неа
-        form(method="post")
-          input(name="answer" value=answer)
+        form(method="post", action="/answer")
+          input(name="answer" value=answer, required)
           input(type="submit" value="Так и было")
+      if !win
+        .hint * Возможно самостоятельно все вспомнить не удасться. Но ведь всегда можно спросить у друзей.
       
-      .hint * Возможно самостоятельно все вспомнить не удасться. Но ведь всегда можно спросить у друзей.
-      
+    script(src="/app.js", type="text/javascript")

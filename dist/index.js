@@ -29,13 +29,13 @@ function getLevel(level, answer) {
     if (!(answer || '').trim().length) {
         return { level };
     }
+    if (answers_1.default.length - 1 <= level) {
+        return { level: level + 1, win: true };
+    }
     if (answers_1.default[level](answer)) {
-        if (answers_1.default.length - 1 === level) {
-            return { level, win: true };
-        }
         return { level: level + 1 };
     }
-    return { level, error: 'Nope' };
+    return { level, error: true };
 }
 app.use((ctx) => tslib_1.__awaiter(this, void 0, void 0, function* () {
     const session = ctx.session;
@@ -43,10 +43,16 @@ app.use((ctx) => tslib_1.__awaiter(this, void 0, void 0, function* () {
         session.level = 0;
     }
     const { body } = ctx.request;
-    const { level, error, win } = getLevel(session.level, body.answer);
-    session.level = level;
     ctx.type = 'text/html; charset=utf-8';
-    ctx.body = pug.renderFile('./tmpl/index.pug', { level, win, answer: (error ? body.answer : ''), error });
+    if (ctx.originalUrl === '/answer') {
+        const result = getLevel(session.level, body.answer);
+        Object.assign(session, result);
+        session.answer = body.answer;
+        ctx.redirect('/');
+        return;
+    }
+    ctx.body = pug.renderFile('./tmpl/index.pug', Object.assign({}, session, { answer: (session.error ? session.answer : '') }));
+    session.error = false;
 }));
 app.listen(PORT);
 console.log(`listening on port ${PORT}`);

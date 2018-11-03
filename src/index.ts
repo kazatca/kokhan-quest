@@ -35,7 +35,7 @@ interface Request {
 
 interface Response {
   level: number;
-  error?: string;
+  error?: boolean;
   win?: boolean;
 }
 
@@ -43,14 +43,14 @@ function getLevel(level: number, answer: string): Response{
   if(!(answer || '').trim().length){
     return {level};
   }
-  if(answers[level](answer)){
-    if(answers.length - 1 === level){
-      return {level, win: true};
-    }
+  if(answers.length - 1 <= level){
+    return {level: level + 1, win: true};
+  }
 
+  if(answers[level](answer)){
     return { level: level + 1};
   }
-  return {level, error: 'Nope'};
+  return {level, error: true};
 }
 
 app.use(async ctx => {
@@ -63,11 +63,22 @@ app.use(async ctx => {
 
   const { body } = ctx.request;
 
-  const {level, error, win} = getLevel(session.level, body.answer);
-  session.level = level;
+  ctx.type = 'text/html; charset=utf-8';
 
-  ctx.type='text/html; charset=utf-8';
-  ctx.body = pug.renderFile('./tmpl/index.pug', {level, win, answer: (error ? body.answer: ''), error});  
+  if(ctx.originalUrl === '/answer'){
+    const result = getLevel(session.level, body.answer);
+    Object.assign(session, result);
+    session.answer = body.answer;
+    ctx.redirect('/');
+    return; 
+  }
+
+  ctx.body = pug.renderFile('./tmpl/index.pug', {
+    ...session,
+    answer: (session.error? session.answer: ''),
+  });
+
+  session.error = false;
 })
 
 app.listen(PORT);
